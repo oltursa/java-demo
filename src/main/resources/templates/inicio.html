@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+<title>Document</title>
+
+</head>
+<body>
+
+	<div class="container">
+		<h1 style="color: #3bad4c">Oltursa Demo - Manejo de persona</h1>
+		<form action="#" th:action="@{/save}" method="post" class="form-inline" style="padding: 0 0 1rem 0;">
+			<div class="form-group">
+				<input placeholder="Nombres" name="nombre" class="form-control" />
+			</div>
+			<div class="form-group">
+				<input placeholder="Paterno" name="paterno" class="form-control" />
+			</div>
+			<div class="form-group">
+				<input placeholder="Materno" name="materno" class="form-control" />
+			</div>
+			<button class="btn btn-success">Insertar</button>
+		</form>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Paterno</th>
+					<th>Materno</th>
+					<th>Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${personas.empty}">
+					<td colspan="2">no existe persona disponibles</td>
+				</tr>
+				<tr th:each="persona : ${personas}">
+					<td><span th:text="${persona.nombre}"> Title </span></td>
+					<td><span th:text="${persona.paterno}"> Title </span></td>
+					<td><span th:text="${persona.materno}"> Title </span></td>
+					<td>
+						<button class="btn btn-info">Editar</button>
+						<button class="btn btn-warning" th:if="${persona.activo}">Deshabilitar</button>
+						<button class="btn btn-warning" th:unless="${persona.activo}">Habilitar</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
